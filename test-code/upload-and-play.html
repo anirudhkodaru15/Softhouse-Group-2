@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+        function playFile(obj) {
+            var sound = document.getElementById('sound');
+            var reader = new FileReader();
+            reader.onload = (function(audio) {return function(e) {
+                                                                    console.log(e);
+                                                                    audio.src = e.target.result;
+                                                                };
+                                            })(sound);
+            reader.readAsDataURL(obj.files[0]);
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <input type="file" id="audio" onchange="playFile(this)" />
+    <audio id="sound" controls></audio>
+
+</body>
+</html>
